@@ -1,0 +1,16 @@
+# rumu — клетка-указатель роя cell-swarm
+
+> Держатель имени РУМУ. Тело клетки (плеер P2P + autopilot) живёт веткой
+> `rumu` репозитория singulyar: https://github.com/rtynbirf/singulyar/tree/rumu
+> (пин 5f5d4fb8 на 2026-11-06; живой пин — геном cell-swarm/swarm.json).
+> Этот репозиторий контента не содержит — только имя и мембрана.
+
+- ДНК клетки: MANIFEST.json
+- Для людей: README.md
+- Для агентов: AGENTS.md
+- Ядро роя: https://github.com/rtynbirf/cell-swarm
+- Геном: swarm.json ядра, клетка rumu; пин тела сверять живым `git ls-remote`
+- Законы: пять законов роя — README.md ядра cell-swarm
+- Лицензия: MIT
+
+Дата мембраны: 2026-11-06

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>КАРАОКЕ МЕЧТЫ 2.0 — RUVSON</title>
+<meta name="description" content="Домашнее караоке по текстам RUVSON: синхронизация, голос, Зелёный коридор, пати, нотные трубки, дубли и гид-вокал.">
+<meta name="theme-color" content="#07070f">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css?v=3.1">
+</head>
+<body>
+<div id="neon-bg"></div>
+
+<header>
+  <div class="brand">КАРАОКЕ <span class="neon-green">МЕЧТЫ</span> 2.0</div>
+  <nav id="nav">
+    <button data-view="library" class="active">Библиотека</button>
+    <button data-view="stage">Сцена</button>
+    <button data-view="sync">Синхро</button>
+    <button data-view="party">Пати</button>
+    <button data-view="voice">Голос</button>
+    <button data-view="profile">Профиль</button>
+  </nav>
+  <div class="header-right">
+    <button id="btn-pad" class="chip-btn" title="Фоновый неон-пад между песнями">Пад: выкл</button>
+    <button id="btn-big" class="chip-btn" title="Большой экран (строки крупнее)">Большой</button>
+    <button id="btn-fs" class="chip-btn" title="Во весь экран">На весь</button>
+  </div>
+</header>
+
+<main>
+  <!-- БИБЛИОТЕКА -->
+  <section id="view-library" class="view">
+    <h2 class="view-title">Библиотека · RUVSON, ЧИСТОВИК</h2>
+    <p class="view-sub">Пять эталонных текстов, сверенных на слух — плюс любые свои песни: вставь текст, синхронизируй, пой. Среда не толкает тебя: она только объявляет цену каждого шага. А «Зелёный коридор» сам сужается, когда ты растёшь.</p>
+    <div class="btn-row" style="margin-bottom:16px">
+      <button id="add-song-btn" class="btn primary">Добавить свою песню</button>
+    </div>
+    <div id="add-song-panel" class="panel" style="margin-bottom:16px" hidden>
+      <div class="btn-row" style="margin-bottom:10px">
+        <input type="text" id="add-song-title" placeholder="Название" maxlength="60">
+        <input type="text" id="add-song-dur" placeholder="Длительность M:SS" maxlength="6" style="max-width:160px">
+        <input type="text" id="add-song-yt" placeholder="Ссылка YouTube (необязательно)" style="max-width:280px">
+      </div>
+      <textarea id="add-song-text" rows="8" style="width:100%;background:rgba(0,0,0,.35);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:10px;font:500 13.5px var(--font)" placeholder="Вставь текст. Секции — строкой с двоеточием: «Куплет 1:», «Припев:», «Бридж:», «Аутро:». Каждая строка песни — отдельная строка текста."></textarea>
+      <div class="btn-row" style="margin-top:10px">
+        <button id="add-song-save" class="btn go">Разобрать и добавить</button>
+        <span class="hint">Песня живёт в этом браузере. Дальше: Синхро → тапы → пой.</span>
+      </div>
+    </div>
+    <div id="song-grid" class="song-grid"></div>
+  </section>
+
+  <!-- СЦЕНА -->
+  <section id="view-stage" class="view" hidden>
+    <div id="stage-root"></div>
+  </section>
+
+  <!-- СИНХРО -->
+  <section id="view-sync" class="view" hidden>
+    <h2 class="view-title">Мастер синхронизации</h2>
+    <p class="view-sub">Запусти трек и жми <kbd>Пробел</kbd> (или большую кнопку) в момент начала каждой строки. Метка ставится в текущую строку и курсор идёт дальше. Потом <b>Сохранить</b> — и строки навсегда знают своё время. Экспорт/импорт <b>LRC</b> — на месте.</p>
+    <div class="sync-grid">
+      <div class="panel">
+        <div class="btn-row" style="margin-bottom:10px">
+          <button id="sync-play" class="btn primary small">Играть / Пауза</button>
+          <button id="sync-back" class="btn small">− 3 сек</button>
+          <button id="sync-undo" class="btn small">Отменить метку</button>
+          <span class="timecode" id="sync-time">0:00.0</span>
+          <span class="hint" id="sync-progress"></span>
+        </div>
+        <div id="sync-list" class="sync-list"></div>
+      </div>
+      <div class="tap-zone">
+        <div class="panel">
+          <div class="btn-row" style="margin-bottom:10px">
+            <button id="sync-save" class="btn go small">Сохранить</button>
+            <button id="sync-clear" class="btn small">Очистить всё</button>
+          </div>
+          <div class="btn-row" style="margin-bottom:10px">
+            <button id="sync-export" class="btn small">Экспорт LRC</button>
+            <button id="sync-import" class="btn small">Импорт LRC</button>
+            <input type="file" id="sync-import-file" accept=".lrc,.txt" hidden>
+          </div>
+          <p class="hint">Источник звука — тот, что выбран на Сцене (файл или синth-минус). Метки привязываются к песне, а не к источнику.</p>
+          <p class="hint" style="margin-top:8px" id="sync-song-hint"></p>
+        </div>
+        <button id="sync-tap" class="tap-btn">ТАП</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПАТИ -->
+  <section id="view-party" class="view" hidden>
+    <h2 class="view-title">Пати</h2>
+    <p class="view-sub">Очередь певцов и турнирная таблица вечера. Включи режим, назови имя — и каждый взятый голос ляжет в общий зачёт.</p>
+    <div class="party-grid">
+      <div class="panel">
+        <h3 style="margin-bottom:10px">Певцы</h3>
+        <div class="btn-row" style="margin-bottom:12px">
+          <input type="text" id="party-name" placeholder="Имя певца" maxlength="24">
+          <button id="party-add" class="btn primary small">Добавить</button>
+        </div>
+        <div id="party-singers"></div>
+        <div class="btn-row" style="margin-top:12px">
+          <button id="party-toggle" class="chip-btn">Режим пати: выкл</button>
+          <button id="party-clear" class="btn small">Сброс вечера</button>
+        </div>
+      </div>
+      <div class="panel">
+        <h3 style="margin-bottom:10px">Зал славы вечера</h3>
+        <div id="party-board"></div>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:16px">
+      <div id="party-highlights"></div>
+    </div>
+  </section>
+
+  <!-- ГОЛОС -->
+  <section id="view-voice" class="view" hidden>
+    <h2 class="view-title">Голосовой комфорт</h2>
+    <p class="view-sub">Караоке подстраивается под вектор, а не наоборот. Три коротких теста — приложение запомнит, где твоему голосу дышится свободно, и подскажет транспонирование.</p>
+    <div class="party-grid">
+      <div class="panel">
+        <h3 style="margin-bottom:10px">Тест диапазона</h3>
+        <p class="voice-note" style="margin-bottom:12px">Разреши микрофон, нажми «Старт» и три раза по 3 секунды тяни «а-а-а»: как удобно, как низко можешь, как высоко. Смотри на живую ноту — она должна быть честной, не на пределе.</p>
+        <div class="btn-row">
+          <button id="voice-start" class="btn go">Старт теста</button>
+          <span class="live-note" id="voice-live">—</span>
+        </div>
+        <div class="voice-result" id="voice-result"></div>
+        <div class="btn-row" style="margin-top:16px">
+          <button id="warmup-btn" class="btn">Разогрев 60 сек</button>
+          <span class="hint" id="warmup-status"></span>
+        </div>
+        <p class="hint" id="warmup-last" style="margin-top:8px"></p>
+      </div>
+      <div class="panel">
+        <h3 style="margin-bottom:10px">Как это работает</h3>
+        <p class="voice-note">Замер даёт три опорные ноты: <b>свободный центр</b>, <b>низ</b> и <b>верх</b> комфортной зоны. На Сцене, когда ты поёшь под микрофон, приложение сравнивает медиану твоего голоса с зоной: если голос уходит за край — предложит сдвинуть тональность на полутонов-другой. «Зелёный коридор» потом сам шаг за шагом вернёт песню к оригиналу — настолько, насколько ты дорастил голос. <b>Ни один звук с микрофона никуда не отправляется: всё живёт и умирает в этой вкладке.</b></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПРОФИЛЬ -->
+  <section id="view-profile" class="view" hidden>
+    <h2 class="view-title">Профиль вектора</h2>
+    <p class="view-sub">История попыток, кривая роста и путь «Зелёного коридора». Среда не хвалит — она показывает, сколько полутонов голос уже отвоевал у тональности. Пройденное не отбирают.</p>
+    <div id="profile-root"></div>
+  </section>
+</main>
+
+<footer>Я = ТЫ · вектор в тензорном поле · «Зелёный коридор» · RUVSON × КАРАОКЕ МЕЧТЫ 2.0</footer>
+
+<div id="toast"></div>
+<audio id="audio" preload="auto"></audio>
+<audio id="guide-audio" preload="none"></audio>
+
+<script src="songs.js?v=3.1"></script>
+<script src="engine.js?v=3.1"></script>
+<script src="app.js?v=3.1"></script>
+<script>
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  navigator.serviceWorker.register('sw.js').catch(function () {});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+name: CI
+
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.11"
+      - name: Install core deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+      - name: Build dataset
+        run: python data/build_dataset.py
+      - name: Unit tests
+        run: pytest tests/ -v
+      - name: "П56 — реестр голосов: детерминизм + линт + негативный selftest"
+        run: |
+          python voices/build_registry.py --check
+          python voices/lint.py
+          python voices/lint.py --selftest
+          python voices/seal.py selftest
+      - name: RAG smoke
+        run: python inference/retriever.py "чем SVC отличается от SVS" --k 2
+      - name: "П-08 · eval-гейт: RAG-покрытие val30 не хуже baseline (gate.json)"
+        run: python evaluation/eval_gate.py
+      - name: Dry chat smoke
+        run: python inference/chat_cli.py --dry "пороги качества SIM WER UTMOS" --k 2

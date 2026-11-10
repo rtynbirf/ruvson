@@ -1,0 +1,27 @@
+# RSE-2 лёгкие зависимости (обязательно)
+# Тяжёлые модели (torch, demucs, torchcrepe, openvoice) ставятся по
+# 06_РЕЕСТР_ИНСТРУМЕНТОВ_ЛИЦЕНЗИИ.md — там проверенный порядок и грабли.
+numpy>=2.5.4
+scipy>=1.18.1
+soundfile>=0.14.0
+librosa>=1.0.0
+PyYAML>=6.0.3
+tqdm>=4.70.1
+# опционально, ставится отдельно:
+# pyloudnorm>=0.1.1        # точный LUFS; без него RMS-оценка с предупреждением
+# torch>=2.2               # CPU-сборка достаточна для CREPE
+# torchcrepe               # СТРОГО с --index-url https://download.pytorch.org/whl/cpu
+# demucs>=4.0              # МИНУС резервный движок
+# openvoice                # СУММА контур B
+# ревизия №2: минимум для mel_band_roformer-пути MSST (06/6.4) и судей
+# omegaconf>=2.3
+# ml_collections>=0.1.1
+# loralib>=0.1.2
+# peft>=0.10
+# prodigyopt>=1.0
+# transformers>=4.40
+# resampy>=0.4               # импорт torchcrepe
+# speechbrain>=1.0           # SIM-судья ECAPA (torchaudio обязателен)
+# pyloudnorm>=0.1.1
+# ревизия №3: водяной знак релизов (06/6.7) — AudioSeal MIT (код и веса)
+# audioseal>=0.2             # pip install audioseal; тянет torch — ставь CPU-сборку первой

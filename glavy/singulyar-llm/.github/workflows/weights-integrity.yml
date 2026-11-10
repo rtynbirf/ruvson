@@ -1,0 +1,31 @@
+# Волна ×3 (W3-F1) · singulyar-llm#12 · двойной замок весов:
+# замок 1 — sha256-манифест + валидатор GGUF-заголовков, замок 2 — пин движка.
+name: weights-integrity
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'WEIGHTS.MANIFEST.json'
+      - 'engine-lock.json'
+      - 'scripts/weights_gate.py'
+      - '**/*.gguf'
+      - '**/*.part*'
+jobs:
+  gate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Самотест валидатора (синтетический GGUF)
+        run: python3 scripts/weights_gate.py --selftest
+      - name: Замок 1 · целостность весов по манифесту
+        run: |
+          if [ -f WEIGHTS.MANIFEST.json ]; then python3 scripts/weights_gate.py manifest; else echo "🟡 WEIGHTS.MANIFEST.json ещё нет — замок встанет при первой загрузке весов (машина проверена самотестом выше)"; fi
+      - name: Замок 1 · заголовки GGUF
+        run: |
+          if find . -name '*.gguf' -print -quit | grep -q .; then python3 scripts/weights_gate.py gguf-all; else echo "🟡 GGUF-весов ещё нет — заголовочный замок ждёт первой загрузки"; fi
+      - name: Замок 2 · пин движка
+        run: |
+          if [ -f engine-lock.json ]; then python3 scripts/weights_gate.py engine-lock; else echo "🟡 engine-lock.json ещё нет — заполнится при первом прогоне движка"; fi
+
+permissions:
+  contents: read

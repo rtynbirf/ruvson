@@ -1,0 +1,42 @@
+name: CI
+
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: JS синтаксис караоке-движка
+        run: |
+          node --check karaoke/songs.js
+          node --check karaoke/engine.js
+          node --check karaoke/app.js
+      - name: LRC-метки синхронны с songs.js
+        run: node scripts/build_lrc.js --check
+      - name: Python-пайплайн компилируется
+        run: |
+          python3 -m py_compile scripts/*.py
+      - name: Пропагатор дома — компиляция и пробы (факт замером)
+        run: |
+          python3 -m py_compile engine/*.py
+          python3 engine/tests.py
+      - name: Тексты ЧИСТОВИК непусты и имеют шапку
+        run: |
+          for f in download/*_ЧИСТОВИК.txt; do
+            test -s "$f" || { echo "ПУСТОЙ: $f"; exit 1; }
+            head -1 "$f" | grep -q "^№" || { echo "НЕТ ШАПКИ: $f"; exit 1; }
+          done
+          echo "ЧИСТОВИК: всё на месте"
+      - name: "П51 — lrc-реестр и экспозиция: двойная сборка байт-идентична, 63/63 страниц"
+        run: |
+          python3 scripts/build_lrc_registry.py --check
+          python3 scripts/build_exposition.py --check
