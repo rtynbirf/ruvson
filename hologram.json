@@ -2,7 +2,7 @@
  "hologram": 1,
  "root": "c223bd4a2f6a56783c1fbdb1b1f671fa61c3150ecf320c82796ea5763043a696",
  "n": 73,
- "storage": 68,
+ "storage": 36,
  "r": 3,
  "self": {
   "name": "ruvson",
@@ -312,6 +312,18 @@
    "cluster": ""
   },
   {
+   "name": "fond-host",
+   "desc": "CORS-хост минус-фонда дома (Н-10 · ADR-0007): Pages отдаёт ACAO:* для лестницы WebAudio плееров",
+   "lang": "Python",
+   "cluster": ""
+  },
+  {
+   "name": "invariant-manifest",
+   "desc": "МАНИФЕСТ ИНВАРИАНТА · FORK 3 · v0.2.3 · CONDITIONAL PASS · seed 7170 · stdlib-only · порождение должно мочь быть опровергнутым",
+   "lang": "Python",
+   "cluster": ""
+  },
+  {
    "name": "karta",
    "desc": "КАРТА ВСЕЛЕННОЙ rtynbirf: генерируется из живых данных API, ни одного выдуманного числа. СВЕРКА = CRITIC: расхождение карты с территорией ловится, а не прячется. Ритуалы: СВЕРКА / ВЫЖИВАНИЕ / НОЧЬ-БЕЗ",
    "lang": "Python",
@@ -324,6 +336,18 @@
    "cluster": ""
   },
   {
+   "name": "neutral-browser",
+   "desc": "Neutral Browser — НЕЙТРАЛЬНЫЙ БРАУЗЕР ПОЛЬЗОВАТЕЛЯ",
+   "lang": "Rust",
+   "cluster": "OS"
+  },
+  {
+   "name": "polimat-hub",
+   "desc": "POLIMAT-HUB: место сверок мультиагента-архитектора. Архитектура, журнал операций, пломбы, stdlib-инструменты.",
+   "lang": "Python",
+   "cluster": "HUB"
+  },
+  {
    "name": "rent-mechanism-q43",
    "desc": "Рентный механизм: ядро Q43 v2, шесть законов L1-L6, инвариант I_K. Машинная программа R11-R49 (наблюдение -> атака -> патч).",
    "lang": "Python",
@@ -332,6 +356,12 @@
   {
    "name": "ruvson-lyrics",
    "desc": "RUVSON — тексты 65 треков: черновики, пайплайн, финальный ZIP",
+   "lang": "JavaScript",
+   "cluster": ""
+  },
+  {
+   "name": "uace",
+   "desc": "КНИГА UACE",
    "lang": "JavaScript",
    "cluster": ""
   }
