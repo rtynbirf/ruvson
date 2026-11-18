@@ -1,14 +1,14 @@
 # КНИГА RUVSON
 
 <div align="center">
-  <img src="banner.png" width="100%" alt="Штандарт ruvson: обсидиан и расплавленное золото, кузня rtynbirf" />
+  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/ruvson@main/banner.png" width="100%" alt="Штандарт ruvson: обсидиан и расплавленное золото, кузня rtynbirf" />
 </div>
 
 <!--ФОРЖ:МУЗА:НАЧАЛО-->
 <div align="center">
-  <img src="repo-muse.svg" width="100%" alt="Муза ruvson: мастерская ВАН ГОГ · ВИХРЬ, кузня ПОЛИМАТ, раунд 12 · REVE=РЕВО" />
+  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/ruvson@main/repo-muse.svg" width="100%" alt="Муза ruvson: мастерская ВАН ГОГ · ВИХРЬ, кузня ПОЛИМАТ, раунд 12 · REVE=РЕВО" />
   <br/>
-  <img src="forge-divider.svg" width="62%" alt="делитель мастерской ВАН ГОГ · ВИХРЬ" />
+  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/ruvson@main/forge-divider.svg" width="62%" alt="делитель мастерской ВАН ГОГ · ВИХРЬ" />
 </div>
 <!--ФОРЖ:МУЗА:КОНЕЦ-->
 
