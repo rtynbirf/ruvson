@@ -31,12 +31,12 @@
 
 | Глава | Источник | Файлов | Коммитов в ориг. | Снимок |
 |---|---|---|---|---|
-| [ruvson-lyrics](glavy/ruvson-lyrics/) | [оригинал](https://github.com/rtynbirf/ruvson-lyrics) | 407 | 58 | `37c34cf` |
-| [ruvson-rse2](glavy/ruvson-rse2/) | [оригинал](https://github.com/rtynbirf/ruvson-rse2) | 67 | 0 | `0f1b353` |
-| [karaoke-dream](glavy/karaoke-dream/) | [оригинал](https://github.com/rtynbirf/karaoke-dream) | 61 | 0 | `7a46e9c` |
-| [rumu](glavy/rumu/) | [оригинал](https://github.com/rtynbirf/rumu) | 12 | 27 | `ef463f1` |
-| [singulyar-llm](glavy/singulyar-llm/) | [оригинал](https://github.com/rtynbirf/singulyar-llm) | 32 | 59 | `2132443` |
-| [voice-atlas-llm](glavy/voice-atlas-llm/) | [оригинал](https://github.com/rtynbirf/voice-atlas-llm) | 202 | 97 | `5f4718d` |
+| [ruvson-lyrics](https://github.com/rtynbirf/ruvson/tree/main/glavy/ruvson-lyrics) | [оригинал](https://github.com/rtynbirf/ruvson-lyrics) | 407 | 58 | `37c34cf` |
+| [ruvson-rse2](https://github.com/rtynbirf/ruvson/tree/main/glavy/ruvson-rse2) | [оригинал](https://github.com/rtynbirf/ruvson-rse2) | 67 | 0 | `0f1b353` |
+| [karaoke-dream](https://github.com/rtynbirf/ruvson/tree/main/glavy/karaoke-dream) | [оригинал](https://github.com/rtynbirf/karaoke-dream) | 61 | 0 | `7a46e9c` |
+| [rumu](https://github.com/rtynbirf/ruvson/tree/main/glavy/rumu) | [оригинал](https://github.com/rtynbirf/rumu) | 12 | 27 | `ef463f1` |
+| [singulyar-llm](https://github.com/rtynbirf/ruvson/tree/main/glavy/singulyar-llm) | [оригинал](https://github.com/rtynbirf/singulyar-llm) | 32 | 59 | `2132443` |
+| [voice-atlas-llm](https://github.com/rtynbirf/ruvson/tree/main/glavy/voice-atlas-llm) | [оригинал](https://github.com/rtynbirf/voice-atlas-llm) | 202 | 97 | `5f4718d` |
 
 ## О чём эта книга
 
