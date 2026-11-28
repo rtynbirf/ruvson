@@ -1,7 +1,7 @@
-# КНИГА RUVSON
-
 <div align="center">
-  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/ruvson@main/banner.png" width="100%" alt="Штандарт ruvson: обсидиан и расплавленное золото, кузня rtynbirf" />
+
+<a href="https://github.com/rtynbirf/ruvson"><img src="banner.png" width="100%" alt="ruvson — штандарт мастерской в каноне ORNAMENTAL MYTHO-REALISM"></a>
+
 </div>
 
 <!--ФОРЖ:МУЗА:НАЧАЛО-->
@@ -14,13 +14,25 @@
 
 <!--ФОРЖ:ПАСПОРТ:НАЧАЛО-->
 <div align="center">
-  <img src="revo-page.svg" width="100%" alt="РЕВО-паспорт страницы ruvson в каноне ORNAMENTAL MYTHO-REALISM: орнаментальная решётка, медальон-миф, строение файлов, лексикон — по фактическому контенту" />
+  <img src="revo-page.svg" width="100%" alt="РЕВО-паспорт страницы ruvson №15 в каноне ORNAMENTAL MYTHO-REALISM: орнаментальная решётка, медальон-миф, строение файлов, лексикон — по фактическому контенту" />
 </div>
 
 | ФАЙЛОВ | ПАПОК | КОММИТОВ | ОБНОВЛЕНО | РЕЛИЗОВ |
 |---:|---:|---:|---|---:|
-| 814 | 88 | 149 | 2026-11-28 | 1 |
+| 814 | 88 | 1 | 2026-11-28 | 1 |
 <!--ФОРЖ:ПАСПОРТ:КОНЕЦ-->
+
+# КНИГА RUVSON
+
+<p align="center"><img src="https://cdn.jsdelivr.net/gh/rtynbirf/ruvson@main/.github/social-preview.png" alt="ruvson" width="100%"></p>
+
+<div align="center">
+  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/ruvson@main/banner.png" width="100%" alt="Штандарт ruvson: обсидиан и расплавленное золото, кузня rtynbirf" />
+</div>
+
+
+
+
 
 
 
